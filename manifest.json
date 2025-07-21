@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "AI Guided First Contribution",
+    "version": "1.0.0",
+    "description": "AI-powered guidance for first-time open-source contributors",
+    
+    "permissions": [
+      "storage",
+      "activeTab",
+      "tabs"
+    ],
+    
+    "host_permissions": [
+      "https://github.com/*",
+      "https://api.github.com/*"
+    ],
+    
+    "background": {
+      "service_worker": "background/service-worker.js"
+    },
+    
+    "content_scripts": [
+      {
+        "matches": ["https://github.com/*/issues*"],
+        "js": ["content-scripts/github-enhancer.js"],
+        "css": ["styles/enhancement.css"]
+      }
+    ],
+    
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "AI Contribution Guide"
+    }
+  }
