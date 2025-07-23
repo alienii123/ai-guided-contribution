@@ -90,19 +90,90 @@
 .step {
   padding: 8px 0;
   font-size: 14px;
+  color: #374151;
+  position: relative;
+  padding-left: 8px;
 }
 
-.close-guidance {
-  width: 100%;
+.step.completed {
+  color: #059669;
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.primary-btn {
+  flex: 1;
   padding: 12px;
   background: #6366f1;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 16px;
+  font-weight: 500;
 }
 
-.close-guidance:hover {
+.primary-btn:hover {
   background: #5855eb;
+}
+
+.secondary-btn {
+  flex: 1;
+  padding: 12px;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #555a65;
+}
+
+/* Enhanced issue highlighting */
+.ai-recommended-issue {
+  border-left: 4px solid #10b981 !important;
+  background-color: #ecfdf5 !important;
+}
+
+.ai-complexity-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+}
+
+.ai-complexity-easy {
+  background-color: #10b981;
+}
+
+.ai-complexity-medium {
+  background-color: #f59e0b;
+}
+
+.ai-complexity-hard {
+  background-color: #ef4444;
+}
+
+/* Mentoring progress indicator */
+.ai-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.ai-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  transition: width 0.3s ease;
 } 

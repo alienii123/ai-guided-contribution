@@ -72,6 +72,13 @@
       font-size: 13px;
       opacity: 0.7;
     }
+    .feature-description {
+      font-size: 10px;
+      color: #666;
+      margin-top: -4px;
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
     .status {
       text-align: center;
       font-size: 12px;
@@ -142,6 +149,9 @@
     <button class="action-button" id="findIssuesBtn" disabled>
       🔍 Find Good First Issues
     </button>
+    <div class="feature-description">
+      AI-powered discovery with personalized recommendations
+    </div>
   </div>
 
   <!-- API Key Configuration -->
@@ -159,17 +169,23 @@
     </div>
   </div>
 
-  <!-- Upcoming Features -->
+  <!-- Advanced Features -->
   <div class="upcoming-section">
     <div class="upcoming-title">
-      🚧 Upcoming Features
+      🚀 AI-Powered Features
     </div>
-    <button class="upcoming-button" id="analyzeBtn" disabled>
-      📊 Analyze Current Repository
+    <button class="action-button" id="analyzeBtn" disabled style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); margin: 6px 0; font-size: 13px;">
+      📊 Analyze Repository Intelligence
     </button>
-    <button class="upcoming-button" id="getGuidanceBtn" disabled>
-      🤖 Get Contribution Guidance
+    <div class="feature-description">
+      Understand tech stack, complexity, and contributor-friendliness
+    </div>
+    <button class="action-button" id="getGuidanceBtn" disabled style="background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%); margin: 6px 0; font-size: 13px;">
+      👤 Setup Learning Profile
     </button>
+    <div class="feature-description">
+      Personalize recommendations based on your skills and goals
+    </div>
   </div>
   
   <div class="status" id="status">

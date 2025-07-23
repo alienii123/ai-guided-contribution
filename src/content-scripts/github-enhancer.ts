@@ -43,22 +43,34 @@ class GitHubEnhancer {
   }
 
   private showAIGuidancePanel(): void {
-    // Create and show AI guidance overlay
+    // Create and show enhanced AI guidance overlay
     const overlay = document.createElement('div');
     overlay.className = 'ai-guidance-overlay';
     overlay.innerHTML = `
       <div class="ai-guidance-panel">
         <h2>🤖 AI Contribution Guide</h2>
         <div class="guidance-steps">
-          <div class="step">✅ Extension Active</div>
-          <div class="step">🔍 Click the extension icon to find good first issues</div>
+          <div class="step completed">✅ Extension Active</div>
+          <div class="step">🔍 Smart Issue Discovery - Find issues that match your skill level</div>
+          <div class="step">📊 Repository Analysis - Understand the codebase complexity</div>
+          <div class="step">👤 Personalized Learning - Build your developer profile</div>
+          <div class="step">🤖 Mentoring System - Get step-by-step guidance</div>
           <div class="step">🚀 Start Contributing!</div>
         </div>
-        <button class="close-guidance">Close</button>
+        <div class="action-buttons">
+          <button id="openExtension" class="primary-btn">Open Extension</button>
+          <button class="close-guidance secondary-btn">Close</button>
+        </div>
       </div>
     `;
 
     overlay.querySelector('.close-guidance')?.addEventListener('click', () => {
+      overlay.remove();
+    });
+
+    overlay.querySelector('#openExtension')?.addEventListener('click', () => {
+      // Try to open the extension popup (this might not work in all browsers)
+      chrome.runtime.sendMessage({ action: 'open-popup' });
       overlay.remove();
     });
 
