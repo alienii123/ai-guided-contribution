@@ -927,19 +927,26 @@ class UserProfileService {
 class AIAnalysisService {
   constructor() {
     this.apiKey = null;
-    this.loadApiKey();
   }
   
-  async loadApiKey() {
+  // Make this method synchronous and ensure it's called before analysis
+  async ensureApiKeyLoaded() {
+    if (this.apiKey) {
+      return Promise.resolve();
+    }
+    
     return new Promise((resolve) => {
       chrome.storage.local.get('openai_api_key', (result) => {
         this.apiKey = result.openai_api_key || null;
+        console.log('API key loaded:', this.apiKey ? 'present' : 'missing');
         resolve();
       });
     });
   }
   
   async analyzeIssueComplexity(issue, repoContext) {
+    await this.ensureApiKeyLoaded();
+    
     if (!this.apiKey) {
       throw new Error('OpenAI API key not configured');
     }
@@ -953,7 +960,7 @@ class AIAnalysisService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
@@ -987,6 +994,8 @@ class AIAnalysisService {
   }
   
   async analyzeRepository(owner, repo) {
+    await this.ensureApiKeyLoaded();
+    
     if (!this.apiKey) {
       throw new Error('OpenAI API key not configured');
     }
@@ -1022,7 +1031,7 @@ Provide analysis in JSON format:
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: [
             {
               role: 'system',
@@ -1085,10 +1094,13 @@ Provide analysis in JSON format:
 class MentoringService {
   constructor() {
     this.apiKey = null;
-    this.loadApiKey();
   }
   
-  async loadApiKey() {
+  async ensureApiKeyLoaded() {
+    if (this.apiKey) {
+      return Promise.resolve();
+    }
+    
     return new Promise((resolve) => {
       chrome.storage.local.get('openai_api_key', (result) => {
         this.apiKey = result.openai_api_key || null;
@@ -1117,6 +1129,8 @@ class MentoringService {
   }
   
   async generateGuidanceSteps(issue, repository) {
+    await this.ensureApiKeyLoaded();
+    
     if (!this.apiKey) {
       return this.getFallbackSteps(issue);
     }
